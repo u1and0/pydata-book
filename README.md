@@ -1,3 +1,5 @@
+**COPY FROM [https://github.com/wesm/pydata-book](https://github.com/wesm/pydata-book) for my practice**
+
 # pydata-book
 Materials and IPython notebooks for "Python for Data Analysis" by Wes McKinney, published by O'Reilly Media
 
