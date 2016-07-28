@@ -1,9 +1,7 @@
 # IPython log file
 
-# __CHANGE DIRECTORY__________________________
-get_ipython().magic('cd python/pydata-book/ch02')
-get_ipython().magic('ls ')
-get_ipython().magic('load ipython_log.py')
+
+
 
 
 # __file__________________________
@@ -95,28 +93,78 @@ tz_counts[:10]
 # __2016/07/28 15:55:54__________________________
 
 
-# __PLOT__________________________ 
+# __tz_countのPLOT__________________________ 
 tz_counts[:10].plot(kind='barh',rot=0)
 import matplotlib.pyplot as plt
 plt.show()
 
 
 
+# __要素数カウント__________________________
 frame['a'][1]
 frame['a'][50]
 frame['a'][51]
-
-
-
-
-# __comment...__________________________
-results=Series([x.split()[0] for x in frame.a.dropna()])
+results=Series([x.split()[0] for x in frame.a.dropna()])   #.dropna() pandasメソッド　空白行を削除　引数で削除する行指定
+   #str.split(x) xを区切り文字にしてstrを分割してリストに収める
+   #空白で区切った文字列をリストに収めて(リスト内法表記)、Seriesクラスでpandas dataframeにする
 results[:5]
-results.value_counts()[:8]
-cframe=frame[frame.a.notnull()]
+results.value_counts()[:8]   #value_counts()で同じ要素の数を数える
 
 
-# __comment...__________________________
+## __要素数カウント(別の方法)__________________________
+cframe=frame[frame.a.notnull()]   #frameのa列のnullじゃない奴だけ集めた(cframe['a']==frame.a.dropna())
+bool(map(list,[cframe['a'],frame.a.dropna()]))   #list関数をcframe['a']とframe.a.dropna()に適用させて同じかどうか見る
+
+
+
+
+
+# __'Windows' or Not?__________________________
 import numpy as np
-operating_system=np.where(cframe['a'].str.contains('Windows'),'Windows','Not Windows')
+operating_system=np.where(cframe['a'].str.contains('Windows'),'Windows','Not Windows')   #cframe['a']が'Windows'という文字を含む　Trueで'Windows'　falseで'Not Windows'を返す
+   #` ['Windows' if 'Windows' in x else 'Not Windows' for x in cframe['a']]`と同じ
 operating_system[:5]
+
+
+## __operating_system Another Way__________________________
+operating_system2=['Windows' if 'Windows' in x else 'Not Windows' for x in cframe['a']]
+bool(list(operating_system)==operating_system2)   #True
+
+
+by_tz_os=cframe.groupby(['tz',operating_system])
+agg_counts=by_tz_os.size().unstack().fillna(0)
+agg_counts[:10]
+
+
+
+# __2016/07/28 22:56:30__________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
