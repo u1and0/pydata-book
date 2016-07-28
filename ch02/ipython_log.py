@@ -1,10 +1,12 @@
 # IPython log file
 
+# __CHANGE DIRECTORY__________________________
 get_ipython().magic('cd python/pydata-book/ch02')
 get_ipython().magic('ls ')
 get_ipython().magic('load ipython_log.py')
-# %load ipython_log.py
-# IPython log file
+
+
+# __file__________________________
 path='./usagov_bitly_data2012-03-16-1331923249.txt'
 open(path).readline()
 import json
@@ -90,13 +92,31 @@ tz_counts[:10]
 
 
 
+# __2016/07/28 15:55:54__________________________
+
+
+# __PLOT__________________________ 
+tz_counts[:10].plot(kind='barh',rot=0)
+import matplotlib.pyplot as plt
+plt.show()
+
+
+
+frame['a'][1]
+frame['a'][50]
+frame['a'][51]
 
 
 
 
+# __comment...__________________________
+results=Series([x.split()[0] for x in frame.a.dropna()])
+results[:5]
+results.value_counts()[:8]
+cframe=frame[frame.a.notnull()]
 
 
-get_ipython().magic('logstart')
-
-
-
+# __comment...__________________________
+import numpy as np
+operating_system=np.where(cframe['a'].str.contains('Windows'),'Windows','Not Windows')
+operating_system[:5]
