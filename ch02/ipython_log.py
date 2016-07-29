@@ -1,3 +1,4 @@
+# %load ipython_log.py
 # IPython log file
 
 
@@ -96,7 +97,7 @@ tz_counts[:10]
 # __tz_countのPLOT__________________________ 
 tz_counts[:10].plot(kind='barh',rot=0)
 import matplotlib.pyplot as plt
-plt.show()
+# plt.show()
 
 
 
@@ -137,25 +138,39 @@ agg_counts[:10]
 
 
 
-# __2016/07/28 22:56:30__________________________
+																	# __2016/07/28 22:56:30__
+indexer=agg_counts.sum(1).argsort()   #argsort()ソート後のインデックスをnp.array形式で返す
+   #np.sum() 基本的に、arrayの中身全部足したやつ返す
+
+'''
+# ABOUT np.sum()
+
+>>> np.sum([[0, 1], [0, 5]], axis=0)
+array([0, 6])   #return array([0+0],[1+5])
+>>> np.sum([[0, 1], [0, 5]], axis=1)
+array([1, 5])   #return array([0+1],[0+5])
+
+'''
+
+indexer[:10]
+
+
+count_subset=agg_counts.take(indexer)[-10:]   #indexerの最後から10分だけのagg_countsを返す(take=取得する)
+
+count_subset.plot(kind='barh', stacked=True)
+# plt.show()
+
+
+# __正規化(終端が 0,1つまり比率を示す)__________________________
+normed_subset=count_subset.div(count_subset.sum(1),axis=0)
+normed_subset.plot(kind='barh',stacked=True)
+# plt.show()
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# __2016/07/29 8:46:25__________________________
 
 
 
