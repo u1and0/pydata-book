@@ -83,3 +83,13 @@ mean_ratings=data.pivot_table('rating', index='title',columns='gender',aggfunc='
 mean_ratings[:5]
 
 
+
+'''
+# ここでの学び
+* 読み込みエラー出たときは、read_tableでengine='python'オプション入れる
+* .ixでインデックス
+* pd.merge()はかぶった列を消してマージしてくれる
+# mean_ratings=data.pivot_table('rating', rows='title',cols='gender', aggfunc='mean')
+	以下に変更
+	mean_ratings=data.pivot_table('rating', index='title',columns='gender', aggfunc='mean')
+'''
