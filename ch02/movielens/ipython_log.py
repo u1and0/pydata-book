@@ -25,6 +25,8 @@ data=pd.merge(pd.merge(ratings,users),movies)
 data.ix[0]
 
 mean_ratings=data.pivot_table('rating', index='title',columns='gender',aggfunc='mean')
+'''もしかしてこうすればいい？？？あとでためす2016/07/29 21:05:54
+mean_ratings=data.pivot_table(data, index='title',columns='gender',aggfunc='mean')'''
 mean_ratings[:5]
 
 # # __2016/07/29 11:48:03__________________________
