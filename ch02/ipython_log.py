@@ -1,3 +1,21 @@
+'''
+* 環境
+	* win10 64bit
+	* Python 3.5.2 
+	* Anaconda 4.1.1 (64-bit)
+* 著書
+	* [Python for Data Analysis( by Wes McKinney )(Final Release Date: October 2012 )](http://www.cin.ufpe.br/~embat/Python%20for%20Data%20Analysis.pdf)
+* データ
+	* [https://github.com/wesm/pydata-book](https://github.com/wesm/pydata-book)
+'''
+
+
+
+
+
+
+
+
 # %load ipython_log.py
 # IPython log file
 
