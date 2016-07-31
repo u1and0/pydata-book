@@ -124,3 +124,23 @@ diversity=diversity.unstack('sex')   #男女別
 
 diversity.head()
 diversity.plot(title="Number of popular names in top 50%")   # 女性のほうが名前の多様性がすべての年において多いことが分かる
+
+
+
+# __The "Last letter" Revolution__________________________ 
+get_last_letter=lambda x:x[-1]   # name columnsから最後の文字列だけ抜き出し
+last_letters=names.name.map(get_last_letter)   #namesの名前すべてに最後の文字列抜出式(get_last_letter)を適用
+last_letters.name='last_letter'
+table=names.pivot_table('births',index=last_letters,columns=['sex','year'],aggfunc=sum)
+
+subtable=table.reindex(columns=[1910,1960,2010],level='year')
+subtable.head()
+
+
+subtable.sum()   #全出生数
+letter_prop=subtable/subtable.sum().astype(float)   # 文字列比率を取得
+
+fig,axes=plt.subplots(2,1,figsize=(10,8))
+letter_prop['M'].plot(kind='bar',rot=0,ax=axes[0],title='Male')
+letter_prop['F'].plot(kind='bar',rot=0,ax=axes[1],title='Female',legend=False)
+plt.show()
